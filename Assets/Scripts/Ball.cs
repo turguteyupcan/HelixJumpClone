@@ -7,9 +7,11 @@ public class Ball : MonoBehaviour
     private Rigidbody rb;
     public float jumpForce;
     public GameObject splashPrefab;
+    private GameManager gm;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        gm=GameObject.FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
@@ -29,17 +31,14 @@ public class Ball : MonoBehaviour
         string materialName = collision.gameObject.GetComponent<MeshRenderer>().material.name;
         Debug.Log(materialName);
 
-        if(materialName == "Safe Color (Instance)")
+        if (materialName == "Unsafe Color (Instance)")
         {
-
+            gm.RestartGame();
         }
-        else if (materialName == "Unsafe Color (Instance)")
+        else if (materialName == "LastRing (Instance)")
         {
-            Debug.Log("Game over");
-        }
-        else if (materialName == "Last Ring (Instance)")
-        {
-
+            Debug.Log("Next Level");
+            gm.Win();
         }
     }
 }
