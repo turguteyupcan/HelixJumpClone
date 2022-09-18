@@ -21,7 +21,20 @@ public class Ball : MonoBehaviour
     {
         //.AddForce(Vector3.up * jumpForce);
         rb.velocity = Vector3.up * jumpForce;
-        string material = collision.gameObject.GetComponent<MeshRenderer>().material.name;
-        Debug.Log(material);
+        string materialName = collision.gameObject.GetComponent<MeshRenderer>().material.name;
+        Debug.Log(materialName);
+
+        if(materialName == "Safe Color (Instance)")
+        {
+
+        }
+        else if (materialName == "Unsafe Color (Instance)")
+        {
+            Debug.Log("Game over");
+        }
+        else if (materialName == "Last Ring (Instance)")
+        {
+
+        }
     }
 }
